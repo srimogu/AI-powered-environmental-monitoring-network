@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Sri Mogu Madhavan",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20260406-v1.28.0" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 105.8,
+      "left": -255,
+      "rotate": 180,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -5.6,
+      "left": -85.3,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "imu1",
+      "top": 41.38,
+      "left": 166.12,
+      "rotate": 270,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "pot1:VCC", "red", [ "h0" ] ],
+    [ "imu1:VCC", "esp:5V", "red", [ "h-48", "v191.92", "h-144", "v-28.8" ] ],
+    [ "imu1:GND", "esp:GND.2", "black", [ "h-57.6", "v-19.28" ] ],
+    [ "rgb1:COM", "pot1:GND", "black", [ "v47.6", "h-191.9" ] ],
+    [ "rgb1:COM", "esp:GND.1", "black", [ "v76.4", "h57.7", "v28.8" ] ],
+    [ "rgb1:R", "esp:27", "green", [ "v76.8", "h57.6", "v9.6" ] ],
+    [ "rgb1:G", "esp:26", "green", [ "v67.2", "h49.3", "v9.6" ] ],
+    [ "rgb1:B", "esp:25", "green", [ "v57.6", "h40", "v9.6" ] ],
+    [ "imu1:SCL", "esp:22", "green", [ "h-67.2", "v-9.68" ] ],
+    [ "imu1:SDA", "esp:21", "green", [ "h-67.2", "v9.52" ] ],
+    [ "esp:34", "pot1:SIG", "green", [ "h-43.01", "v86.4" ] ]
+  ],
+  "dependencies": {}
+}

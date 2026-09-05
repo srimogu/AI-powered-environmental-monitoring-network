@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "author": "Brihadeeswaran Manju.k",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -48,
+      "left": 43.24,
+      "attrs": { "env": "micropython-20260406-v1.28.0" }
+    },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": 31.5, "left": -271.4, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "gas2", "top": -64.5, "left": -271.4, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "gas3", "top": 117.9, "left": -300.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "gas1:GND", "black", [ "h-43.01", "v-48" ] ],
+    [ "esp:5V", "gas1:VCC", "red", [ "h-115.05", "v-75.9" ] ],
+    [ "gas2:VCC", "esp:5V", "red", [ "h9.6", "v133.5", "h134.4", "v38.4" ] ],
+    [ "gas3:VCC", "esp:5V", "red", [ "h28.8", "v37.5", "h163.2", "v-48" ] ],
+    [ "gas2:AOUT", "esp:32", "green", [ "h163.2", "v76.8" ] ],
+    [ "gas1:AOUT", "esp:33", "green", [ "h163.2", "v-9.6" ] ],
+    [ "gas3:AOUT", "esp:25", "green", [ "h192", "v-86.4" ] ],
+    [ "gas3:GND", "gas1:GND", "black", [ "h57.6", "v-87.2" ] ],
+    [ "gas2:GND", "gas1:GND", "black", [ "h38.4", "v95.2" ] ]
+  ],
+  "dependencies": {}
+}

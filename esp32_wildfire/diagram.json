@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "author": "Sri Mogu Madhavan",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 4.84,
+      "attrs": { "env": "micropython-20260406-v1.28.0" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -95.7, "left": -101.4, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": 127.5, "left": -223.4, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 101,
+      "left": 152.6,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 37.4,
+      "left": -172.5,
+      "rotate": 270,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h-52.61" ] ],
+    [ "dht1:GND", "gas1:GND", "black", [ "v0" ] ],
+    [ "gas1:VCC", "esp:5V", "red", [ "h28.8", "v18.3" ] ],
+    [ "dht1:VCC", "gas1:VCC", "red", [ "v86.4", "h19.2", "v67.2" ] ],
+    [ "pot1:VCC", "gas1:VCC", "red", [ "h-19.2", "v76.8", "h-19.2" ] ],
+    [ "esp:32", "dht1:SDA", "green", [ "h0" ] ],
+    [ "gas1:AOUT", "esp:33", "green", [ "h9.6", "v-48" ] ],
+    [ "rgb1:COM", "dht1:GND", "black", [ "v-0.1", "h66.8" ] ],
+    [ "rgb1:B", "esp:26", "green", [ "h134.4", "v56" ] ],
+    [ "rgb1:G", "esp:27", "green", [ "v-1.3", "h124.8", "v57.6" ] ],
+    [ "rgb1:R", "esp:14", "green", [ "v0", "h48", "v38.4" ] ],
+    [ "esp:35", "pot1:SIG", "green", [ "h115.35", "v86.4" ] ],
+    [ "esp:GND.3", "pot1:GND", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
